@@ -1,0 +1,45 @@
+<div class="container col-5">
+<form #f="ngForm">
+    <fieldset>
+        <legend>Add Video</legend>
+        <div class="mb-3">
+            <label for="disabledTextInput" class="form-label">id</label>
+            <input required [(ngModel)]="video.id" name="id" type="text" id="disabledTextInput" #id="ngModel" class="form-control" placeholder="id">
+            <div class="alert alert-danger" *ngIf="id.invalid && id.touched">
+                <p *ngIf="id.errors?.['required']">id is required</p>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="disabledTextInput" class="form-label">title</label>
+            <input required [(ngModel)]="video.title" name="title" type="text" id="disabledTextInput" class="form-control" #title="ngModel" placeholder="title">
+            <div class="alert alert-danger" *ngIf="title.invalid && title.touched">
+                <p *ngIf="title.errors?.['required']">id is required</p>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="disabledSelect" class="form-label">genre</label>
+            <select [(ngModel)]="video.genre" name="genre" id="disabledSelect" class="form-select">
+                <option value="action" selected>action</option>
+                <option value="documentaire">documentaire</option>
+                <option value="comedie">comedie</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <div class="form-check">
+                <input [(ngModel)]="video.genre" name="genre" class="form-check-input" type="checkbox" id="disabledFieldsetCheck">
+                <label class="form-check-label" for="disabledFieldsetCheck">
+                    Public ? 
+                </label>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="disabledTextInput" class="form-label">number of shares</label>
+            <input required #cc="ngModel" [(ngModel)]="video.nbrShared" name="nbrShared" type="number" id="disabledTextInput" class="form-control">
+            <div class="alert alert-danger" *ngIf="cc.invalid && cc.touched">
+                <p *ngIf="cc.errors?.['required']">id is required</p>
+            </div>
+        </div>
+        <button type="button" [disabled]="f.invalid" (click)="addVideo()" class="btn btn-primary">Submit</button>
+    </fieldset>
+</form>
+</div>
